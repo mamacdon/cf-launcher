@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script data-main="login.js" src="requirejs/require.js"></script>
+</head>
+<body>
+<h3>Authorized Origins:</h3>
+<script type="text/x-html-templates">
+<template id="authorized_origin">
+	<li><input type="button" value="remove"></li>
+</template>
+</script>
+<ul id="authorized_origins">
+</ul>
+<form id="authorize_origin">
+<input id="origin" type="url" size="50">
+<input type="submit" value="authorize">
+</form>
+<hr>
+<input id="logout" type="button" value="logout">
+</body>
+</html>

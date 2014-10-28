@@ -55,7 +55,7 @@ define(["orion/Deferred", "orion/PluginProvider", "WebDAVFileService", "domReady
 		login: absoluteURL("login.html")
 	});
 
-	var base = absoluteURL(".");
+	var base = absoluteURL(".") + "dav/";
 	var service = new WebDAVFileService(base, base);
 	provider.registerServiceProvider("orion.core.file", trace(service), {
 		Name: 'WebDAV [' + base + ']',

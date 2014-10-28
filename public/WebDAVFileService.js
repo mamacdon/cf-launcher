@@ -13,6 +13,8 @@
 
 define(["orion/Deferred"], function(Deferred) {
 
+	var _rootLocation;
+
 	function serializeChildren(node) {
 		var children = node.childNodes;
 		if (children.length === 0) {
@@ -128,9 +130,9 @@ define(["orion/Deferred"], function(Deferred) {
 				SymLink: false
 			}
 		};
-		result.Location = response.href[0];
+		result.Location = new URL(response.href[0].replace(/^\//,""), _rootLocation).href;
 		var prop = response.propstat[0].prop;
-		result.Name = prop.displayname;
+		result.Name = prop.displayname || result.Location.replace(/\/$/, "").split("/").pop();
 		result.Length = Number(prop.getcontentlength);
 		result.LocalTimeStamp = new Date(prop.getlastmodified).getTime();
 		result.Directory = (prop.resourcetype !== null && prop.resourcetype.indexOf("collection") !== -1);
@@ -179,7 +181,8 @@ define(["orion/Deferred"], function(Deferred) {
 
 	function WebDAVFileService(name, location) {
 		this._rootName = name;
-		this._rootLocation = location;
+		this._rootLocation = location || window.location.href;
+		_rootLocation = this._rootLocation;
 	}
 
 	WebDAVFileService.prototype = /**@lends eclipse.DAVFileServiceImpl.prototype */

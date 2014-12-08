@@ -130,9 +130,9 @@ The `DEBUG` variable is very flexible. See [debug](https://www.npmjs.org/package
 #### LAUNCHER_CORS_ORIGINS ####
 * Gives a JSON array of origins that CORS requests will be allowed from.
 * For example, to allow CORS requests from https://foo.example.org:
-   ```shell
-export LAUNCHER_CORS_ORIGINS="[\"https://foo.example.org\"]"
-   ```
+```shell
+cf set-env myapp LAUNCHER_CORS_ORIGINS "[\"https://foo.example.org\"]"
+```
 * If any `--cors` command-line options are provided, the environment variable is ignored.
 
 #### PASSWORD ####
